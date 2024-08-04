@@ -46,11 +46,19 @@ def getMpData(mpLink):
 if __name__ == "__main__":
     mpLinks = []
 
+    print("Enter multiplayer lobby IDs.")
+    print("Note: If you want to enter multiple at a time, seperate the IDs with spaces")
+    print("To finish, enter 0 (zero)")
     while True:
-        id = int(input("Enter mp link ID: "))
-        if not id:
+        id = input("Enter mp link IDs: ")
+        idList = id.split()
+        if '0' in idList:
             break
-        mpLinks.append(id)
+        idList = [int(id) for id in idList]
+        if len(idList) > 1:
+            mpLinks += idList
+        else:
+            mpLinks.append(id)
 
 
     for link in mpLinks:

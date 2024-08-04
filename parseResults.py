@@ -48,18 +48,20 @@ def sortRankSum(rankSum):
 
 def printMpLinks(results):
     for player in results["mpLinks"]:
-        print(results["mpLinks"][player])
+        print(results["mpLinks"][player], end=' ')
+    print()
 
-mpLinks = {result: results[result]["mpLink"] for result in results if result != "beatmaps"}
-rankings = mapPlayersToScore(results)
-mapRanks(rankings)
-rankSum, lowest = calculateRankSum(rankings)
+if __name__ == "__main__":
+    mpLinks = {result: results[result]["mpLink"] for result in results if result != "beatmaps"}
+    rankings = mapPlayersToScore(results)
+    mapRanks(rankings)
+    rankSum, lowest = calculateRankSum(rankings)
 
-results = {"mapRankings": rankings, "rankSum": rankSum, "playerLowestRanks": lowest, "mpLinks": mpLinks}
+    results = {"mapRankings": rankings, "rankSum": rankSum, "playerLowestRanks": lowest, "mpLinks": mpLinks}
 
-if not os.path.exists('results.json'):
+    if not os.path.exists('results.json'):
+        with open('results.json', 'w') as file:
+            json.dump({}, file)
+
     with open('results.json', 'w') as file:
-        json.dump({}, file)
-
-with open('results.json', 'w') as file:
-    json.dump(results, file, indent=4)
+        json.dump(results, file, indent=4)
