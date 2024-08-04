@@ -1,7 +1,7 @@
 import json
 
-from qualifiers import getMpData
-from rankSum import extractPlayers, mapPlayerToScore, mapRanks, calculateRankSum, removeLowestScores
+from old.qualifiers import getMpData
+from old.rankSum import extractPlayers, mapPlayerToScore, mapRanks, calculateRankSum, removeLowestScores
 
 def calculateAll(mpID):
     results = getMpData(mpID) # Get the mp link results

@@ -56,6 +56,10 @@ if __name__ == "__main__":
     for link in mpLinks:
         beatmaps, results = getMpData(link)
 
+        if not os.path.exists('qualifiers.json'):
+            with open('qualifiers.json', 'w') as file:
+                json.dump({}, file)
+
         with open('qualifiers.json', 'r') as file:
             try:
                 data = json.load(file)

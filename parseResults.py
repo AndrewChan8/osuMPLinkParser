@@ -1,4 +1,5 @@
 import json
+import os
 
 # Open the JSON file
 with open('qualifiers.json', 'r') as file:
@@ -40,7 +41,7 @@ def calculateRankSum(scores):
     
     sortedRankSum = dict(sorted(playerRankSum.items(), key=lambda item: item[1]))
     
-    return sortedRankSum
+    return sortedRankSum, playerLowestRanks
 
 def sortRankSum(rankSum):
     return dict(sorted(rankSum.items(), key=lambda item: item[1]))
@@ -52,9 +53,13 @@ def printMpLinks(results):
 mpLinks = {result: results[result]["mpLink"] for result in results if result != "beatmaps"}
 rankings = mapPlayersToScore(results)
 mapRanks(rankings)
-rankSum = calculateRankSum(rankings)
+rankSum, lowest = calculateRankSum(rankings)
 
-results = {"mapRankings": rankings, "rankSum": rankSum, "mpLinks": mpLinks}
+results = {"mapRankings": rankings, "rankSum": rankSum, "playerLowestRanks": lowest, "mpLinks": mpLinks}
+
+if not os.path.exists('results.json'):
+    with open('results.json', 'w') as file:
+        json.dump({}, file)
 
 with open('results.json', 'w') as file:
     json.dump(results, file, indent=4)
