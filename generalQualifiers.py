@@ -1,5 +1,5 @@
 """
-This file is for looking at the data for a single player and their qualifer data.
+This file is for looking at the data for a multiple player and their qualifer data.
 """
 
 import requests
