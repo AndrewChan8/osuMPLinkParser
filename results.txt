@@ -1,3 +1,0 @@
-Enter your name: Enter your age: Please enter a valid number for age.
-Enter your age: Please enter a valid number for age.
-Enter your age: 
